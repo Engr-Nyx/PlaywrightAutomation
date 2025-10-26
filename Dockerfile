@@ -8,4 +8,5 @@ COPY package.json package-lock.json ./
 RUN npm install
 COPY . .
 RUN npm install -g allure-commandline
-CMD /bin/sh -c "npm test || true && allure generate allure-results --clean -o allure-report"
+EXPOSE 3000
+CMD npx playwright test && allure generate allure-results --clean -o allure-report && allure open -p 3000 allure-report
