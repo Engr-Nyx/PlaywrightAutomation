@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/playwright:v1.45.0-jammy AS builder
+FROM mcr.microsoft.com/playwright:focal
 RUN apt-get update \
     && apt-get install -y openjdk-17-jre-headless \
     && apt-get clean \
@@ -7,6 +7,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install
 COPY . .
-RUN npm install -g allure-commandline
+RUN npm install -g allure-commandline --save-dev
+RUN npx playwright install --with-deps
 EXPOSE 3000
 CMD npx playwright test && allure generate allure-results --clean -o allure-report && allure open -p 3000 allure-report
