@@ -46,7 +46,7 @@ export default defineConfig({
   projects: [
     {
       name: "chromium",
-      use: { ...devices["Desktop Chrome"], ...devices["iPhone 14 Pro Max"] },
+      use: { ...devices["iPhone 14 Pro Max"] },
     },
 
     {
