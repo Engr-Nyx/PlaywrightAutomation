@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { allure } from "allure-playwright";
 
 test("has title", async ({ page }) => {
   await page.goto("https://playwright.dev/");
@@ -7,5 +8,9 @@ test("has title", async ({ page }) => {
   await expect(
     page.getByRole("heading", { name: "Installation" })
   ).toBeVisible();
-  await page.screenshot({ path: "screenshot.png", fullPage: true });
+  const titleScreenshot = await page.screenshot({
+    path: "./artifacts/hasTitle.png",
+    fullPage: true,
+  });
+  allure.attachment("Manual Screenshot", titleScreenshot, "image/png");
 });
