@@ -1,0 +1,1 @@
+Yes, the image contains the value "Installation" at the top. It is part of the heading in a documentation section about installing the Playwright framework.
