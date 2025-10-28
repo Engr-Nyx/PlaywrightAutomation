@@ -34,10 +34,9 @@ jobs:
           key: ${{ runner.os }}-playwright-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-playwright-
-      - name: Run Playwright with OpenAI API
+      - name: Run Playwright tests
         env:
           OPEN_AI_API: ${{ secrets.OPEN_AI_API }}
-      - name: Run Playwright tests
         run: npx playwright test
       - name: Generate Allure Report
         run: npx allure generate --clean allure-results -o allure-report
