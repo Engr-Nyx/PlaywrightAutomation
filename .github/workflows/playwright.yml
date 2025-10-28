@@ -13,9 +13,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: lts/*
-
-      - name: Cache npm dependencies
-        id: npm-cache
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Cache dependencies
         uses: actions/cache@v4
         with:
           path: ~/.npm
@@ -24,37 +26,25 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Install dependencies
-        if: steps.npm-cache.outputs.cache-hit != 'true'
         run: npm ci
-
-      - name: Cache Playwright browsers
-        id: pw-cache
+      - name: Cache Playwright Browsers
         uses: actions/cache@v4
         with:
           path: ~/.cache/ms-playwright
           key: ${{ runner.os }}-playwright-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-playwright-
-
-      - name: Install Playwright Browsers
-        if: steps.pw-cache.outputs.cache-hit != 'true'
-        run: npx playwright install --with-deps
-
-      - name: Run Playwright Tests
+      - name: Run Playwright tests
         run: npx playwright test
-
       - name: Generate Allure Report
         run: npx allure generate --clean allure-results -o allure-report
-
-      - name: Deploy Allure Report to GitHub Pages
+      - name: Deploy Allure report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: allure-report
-
-      - name: Upload Allure Report Artifact
+      - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
-        uses: actions/upload-artifact@v4
         with:
           name: allure-report
           path: allure-report/
