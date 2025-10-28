@@ -2,7 +2,7 @@ import { request } from "@playwright/test";
 
 export class OpenAi {
   public async compareContentOnText(image: string, prompt: string) {
-    const apiKey = "";
+    const apiKey = process.env.OPEN_AI_API;
     if (!apiKey) throw new Error("Missing OPEN_AI_API secret");
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
