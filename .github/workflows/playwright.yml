@@ -9,8 +9,8 @@ jobs:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
-      - name: Run actions
-      - uses: actions/checkout@v4
+      - name: Run Image Comparison Script
+        run: node dist/compareImages.js
       - uses: actions/setup-node@v4
         with:
           node-version: lts/*
