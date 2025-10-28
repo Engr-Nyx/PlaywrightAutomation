@@ -25,7 +25,6 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-
       - name: Install dependencies
         run: npm ci
       - name: Cache Playwright Browsers
@@ -35,6 +34,9 @@ jobs:
           key: ${{ runner.os }}-playwright-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-playwright-
+      - name: Run Playwright with OpenAI API
+          env:
+            OPEN_AI_API: ${{ secrets.OPEN_AI_API }}
       - name: Run Playwright tests
         run: npx playwright test
       - name: Generate Allure Report
