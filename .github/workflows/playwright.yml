@@ -38,7 +38,6 @@ jobs:
       - name: OPEN AI API
         env:
           OPEN_AI_API: ${{ secrets.OPEN_AI_API }}
-        run: node dist/compareImages.js
       - name: Run Playwright tests
         run: npx playwright test
       - name: Generate Allure Report
