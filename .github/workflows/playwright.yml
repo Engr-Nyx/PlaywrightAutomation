@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Run actions
-      - uses: actions/setup-node@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: lts/*
+          node-version: "lts/*"
       - name: Install dependencies
         run: npm ci
       - name: Install Playwright Browsers
@@ -35,9 +35,11 @@ jobs:
           key: ${{ runner.os }}-playwright-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-playwright-
-      - name: Run Playwright tests
+      - name: OPEN AI API
         env:
           OPEN_AI_API: ${{ secrets.OPEN_AI_API }}
+        run: node dist/compareImages.js
+      - name: Run Playwright tests
         run: npx playwright test
       - name: Generate Allure Report
         run: npx allure generate --clean allure-results -o allure-report
