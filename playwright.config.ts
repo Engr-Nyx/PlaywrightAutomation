@@ -46,7 +46,7 @@ export default defineConfig({
   projects: [
     {
       name: "chromium",
-      use: { ...devices["Desktop Chrome"] },
+      use: { ...devices["Desktop Chrome"], ...devices["iPhone 14 Pro Max"] },
     },
 
     {
@@ -74,10 +74,10 @@ export default defineConfig({
     //   name: 'Microsoft Edge',
     //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
     // },
-    {
-      name: "Google Chrome",
-      use: { ...devices["Desktop Chrome"], channel: "iPhone 14 Pro" },
-    },
+    // {
+    //   name: "Google Chrome",
+    //   use: { ...devices["Desktop Chrome"], channel: "iPhone 14 Pro" },
+    // },
   ],
 
   /* Run your local dev server before starting the tests */
