@@ -14,8 +14,9 @@ test("has title", async ({ page }) => {
   });
   allure.attachment("Manual Screenshot", titleScreenshot, "image/png");
   const openai = new OpenAi();
-  openai.compareContentOnText(
+  const compareResult: string = await openai.compareContentOnText(
     titleScreenshot.toString("base64"),
-    "Verify if the image contains 'Get Started' value"
+    "Verify if the image contains 'Installation' value"
   );
+  allure.attachment("Comparison Result", compareResult, "text/plain");
 });
