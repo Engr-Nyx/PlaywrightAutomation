@@ -35,8 +35,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-playwright-
       - name: Run Playwright with OpenAI API
-          env:
-            OPEN_AI_API: ${{ secrets.OPEN_AI_API }}
+        env:
+          OPEN_AI_API: ${{ secrets.OPEN_AI_API }}
       - name: Run Playwright tests
         run: npx playwright test
       - name: Generate Allure Report
