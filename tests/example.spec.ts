@@ -15,7 +15,7 @@ test("has title", async ({ page }) => {
   allure.attachment("Manual Screenshot", titleScreenshot, "image/png");
   const openai = new OpenAi();
   const compareResult: string = await openai.compareContentOnText(
-    titleScreenshot.toString("base64"),
+    `data:image/png;base64,${titleScreenshot.toString("base64")}`,
     "Verify if the image contains 'Installation' value"
   );
   allure.attachment("Comparison Result", compareResult, "text/plain");
