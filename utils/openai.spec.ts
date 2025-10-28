@@ -2,11 +2,13 @@ import { request } from "@playwright/test";
 
 export class OpenAi {
   public async compareContentOnText(image: string, prompt: string) {
+    const apiKey = process.env.OPEN_AI_API;
+    if (!apiKey) throw new Error("Missing OPEN_AI_API secret");
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+        Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
         model: "gpt-4o-mini",
