@@ -10,14 +10,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "lts/*"
+
       - name: Install dependencies
         run: npm ci
+
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
+
       - name: Cache dependencies
         uses: actions/cache@v4
         with:
@@ -27,6 +31,7 @@ jobs:
             ${{ runner.os }}-node-
       - name: Install dependencies
         run: npm ci
+
       - name: Cache Playwright Browsers
         uses: actions/cache@v4
         with:
@@ -34,12 +39,25 @@ jobs:
           key: ${{ runner.os }}-playwright-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-playwright-
+
       - name: Run Playwright tests
         env:
           OPEN_AI_API: ${{ secrets.OPEN_AI_API }}
         run: npx playwright test
+
+      - name: Copy history
+        run: |
+          mkdir -p build/allure-results/history
+          cp -r gh-pages/history build/allure-results/ || true
+
       - name: Generate Allure Report
         run: npx allure generate --clean allure-results -o allure-report
+
+      - name: Save new history
+        run: |
+          mkdir -p gh-pages
+          cp -r build/allure-report/history gh-pages/
+
       - name: Deploy Allure report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
