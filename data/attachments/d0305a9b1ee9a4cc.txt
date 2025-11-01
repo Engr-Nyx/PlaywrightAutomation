@@ -1,0 +1,1 @@
+Yes, the image contains the value 'Installation.' It appears prominently at the beginning of the content, indicating the section that covers the installation process for Playwright.
