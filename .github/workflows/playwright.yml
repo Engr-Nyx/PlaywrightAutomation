@@ -45,7 +45,7 @@ jobs:
           OPEN_AI_API: ${{ secrets.OPEN_AI_API }}
         run: npx playwright test
 
-     - name: Copy History
+      - name: Copy History
         run: |
           mkdir -p build/allure-results/history
           cp -r gh-pages/history build/allure-results/ || true
@@ -58,7 +58,7 @@ jobs:
         run: |
           mkdir -p gh-pages
           cp -r build/allure-report/history gh-pages/ || true
-          
+
       - name: Deploy Allure report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
