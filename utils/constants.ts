@@ -1,2 +1,2 @@
-export const BASE_URL = "https://teklora-solutions-inc.odoo.com"
-export const LOGIN_URL = `${BASE_URL}/web/login`
+export const baseURL = "https://teklora-solutions-inc.odoo.com"
+export const loginURL = `${baseURL}/web/login`

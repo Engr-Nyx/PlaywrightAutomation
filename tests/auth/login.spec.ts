@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
 import { LoginPage } from '../../pages/auth/login.page';
-import { LOGIN_URL } from '../../utils/constants';
+import { loginURL } from '../../utils/constants';
 
 const { allure } = require('allure-playwright');
 
@@ -8,7 +8,7 @@ test.describe('Login Authentication', () => {
 
     test.beforeEach('Before Test', async ({ page }) => {
         const loginPage = new LoginPage(page);
-        await loginPage.navigate(LOGIN_URL);
+        await loginPage.navigate(loginURL);
         await loginPage.waitForPageLoad();
     });
 
