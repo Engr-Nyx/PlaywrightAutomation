@@ -19,6 +19,5 @@ test.describe('Login Authentication', () => {
             const screenshot = await page.screenshot({ fullPage: false });
             await allure.attachment('Login page screenshot', screenshot, 'image/png');
         });
-
     });
 });
