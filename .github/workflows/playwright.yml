@@ -19,6 +19,8 @@ jobs:
       run: npx playwright install --with-deps
     - name: Run Playwright tests
       run: npx playwright test
+      env:
+        OPEN_API_KEY: ${{ secrets.OPEN_API_KEY }}
     - name: Generate Allure Report
       run: npx allure generate --clean allure-results -o allure-report
     - name: Deploy Allure report to GitHub Pages
