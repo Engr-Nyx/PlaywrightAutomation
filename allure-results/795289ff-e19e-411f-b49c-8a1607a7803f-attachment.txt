@@ -1,0 +1,9 @@
+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
+{
+  error: {
+    message: "This model's maximum context length is 128000 tokens. However, your messages resulted in 302585 tokens. Please reduce the length of the messages.",
+    type: 'invalid_request_error',
+    param: 'messages',
+    code: 'context_length_exceeded'
+  }
+}

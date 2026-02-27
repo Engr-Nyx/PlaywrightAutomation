@@ -21,6 +21,10 @@ test.describe('Login Authentication', () => {
 			await allure.attachment('Login page screenshot', screenshot, 'image/png');
 		});
 
+		await allure.step('Validate teklora in login page', async () => {
+			await loginPage.validateImage("Validate if the image on the login form contains the word 'Teklora'");
+		});
+
 		await allure.step('Take screenshot after filling password fields', async () => {
 			await loginPage.fillPasswordInput("Testing@123");
 			const passwordFillScreenshot = await page.screenshot({ fullPage: false });

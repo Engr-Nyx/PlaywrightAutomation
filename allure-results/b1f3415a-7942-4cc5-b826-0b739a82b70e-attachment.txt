@@ -1,0 +1,8 @@
+{
+  error: {
+    message: "Invalid type for 'messages[0].content[1].image_url.url': expected a base64-encoded data URL, but got an object instead.",
+    type: 'invalid_request_error',
+    param: 'messages[0].content[1].image_url.url',
+    code: 'invalid_type'
+  }
+}
