@@ -1,5 +1,10 @@
 # PlaywrightAutomation
-npm install dotenv --save-dev
-npx allure serve allure-results
-npx playwright test
+
+npm install
+
 npx playwright install
+
+npx playwright test
+
+npx allure serve allure-results
+
