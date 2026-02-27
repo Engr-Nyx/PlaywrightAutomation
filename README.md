@@ -1,4 +1,4 @@
-# PlaywrightAutomation
+# Playwright Automation Powered by AI
 
 
 ## Prerequisites
