@@ -5,4 +5,6 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+allure-results/
+test-results/
 .env
