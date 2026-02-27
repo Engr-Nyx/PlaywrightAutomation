@@ -6,7 +6,7 @@ Initialize your local environment with the following:
 * `npm install`
 * `npx playwright install`
 
-### 🎭 Running Tests
+### Running Tests
 To execute the automation suite:
 * `npx playwright test`
 
