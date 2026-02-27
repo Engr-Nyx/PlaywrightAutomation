@@ -1,2 +1,2 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","3856","User can login successfully","chromium","Fri Feb 27 02:38:02 UTC 2026","passed","Fri Feb 27 02:38:06 UTC 2026","Login Authentication","","",""
+"","3522","User can login successfully","chromium","Fri Feb 27 04:20:52 UTC 2026","passed","Fri Feb 27 04:20:56 UTC 2026","Login Authentication","","",""
