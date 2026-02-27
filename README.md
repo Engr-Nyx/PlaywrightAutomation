@@ -1,5 +1,15 @@
 # PlaywrightAutomation
 
+
+## Prerequisites
+Before setting up the project, ensure you have the following installed and configured:
+
+1. **Node.js & npm:** [Download and install Node.js](https://nodejs.org/) (LTS version recommended).
+2. **Java SDK:** Install JDK 11 or higher.
+3. **JAVA_HOME Environment Variable:** * Ensure your `JAVA_HOME` is pointing to your JDK installation folder.
+   * Add `%JAVA_HOME%\bin` (Windows) or `$JAVA_HOME/bin` (Mac/Linux) to your system **PATH**.
+   * *Required for running Allure reports.*
+
 ### Setup & Installation
 Initialize your local environment with the following:
 
