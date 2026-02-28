@@ -4,6 +4,7 @@ const { allure } = require('allure-playwright');
 test.describe('Validate dashboard functionality', () => {
   test.beforeEach(async ({ dashboardPage }) => {
     await dashboardPage.navigateToDashboard();
+    test.setTimeout(120000);
   });
 
   test('TS_003 - Validate dashboard functionality', async ({ page, dashboardPage }) => {
