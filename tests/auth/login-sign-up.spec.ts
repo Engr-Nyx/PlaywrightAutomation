@@ -51,12 +51,19 @@ test.describe('Validate Authentication functionality', () => {
 		await loginPage.clickHeaderLoginButton();
 
 		await allure.step('Verify login fields are fillable', async () => {
-			await loginPage.fillLoginForm("Ludie8", "Test@1xSBwZio!");
+			await loginPage.fillLoginForm('Ludie8', 'Test@1xSBwZio!');
 		});
 
 		await allure.step('Take screenshot after filling login fields', async () => {
-			await loginPage.login("Ludie8", "Test@1xSBwZio!");
+			await loginPage.login('Ludie8', 'Test@1xSBwZio!');
 		});
+
+		await allure.step('Take screenshot after filling login fields', async () => {
+			await loginPage.login('Ludie8', 'Test@1xSBwZio!');
+		});
+
+		await loginPage.verifyUserHasLoggedIn('Ludie8');
+
 	});
 
 	test.afterEach(async({page})=>{

@@ -1,4 +1,4 @@
-import { Page, Locator, expect } from '@playwright/test';
+import { Page, Locator, expect, Browser } from '@playwright/test';
 import { HeaderNavigationBar } from '../components/header.page';
 const { allure } = require('allure-playwright');
 
@@ -7,13 +7,15 @@ export class LoginPage extends HeaderNavigationBar {
   readonly passwordInput: Locator;
   readonly loginButton: Locator;
   readonly closeButton: Locator;
+  readonly logoutButton: Locator;
 
-  constructor(page: Page) {
-    super(page);
+  constructor(page: Page, browser: Browser) {
+    super(page, browser);
     this.usernameInput = page.locator('#loginusername');
     this.passwordInput = page.locator('#loginpassword');
     this.loginButton = page.getByRole('button', { name: 'Log in' });
     this.closeButton = page.getByLabel('Log in').getByText('Close');
+    this.logoutButton = page.getByRole('link', { name: 'Log out' });
   }
 
 	async clickUsernameInput(){
@@ -28,10 +30,10 @@ export class LoginPage extends HeaderNavigationBar {
     });
 	}
 
-  async isCloseButtonVisible(){
-    if(await this.closeButton.isVisible()) return true;
-    else return false;
+  async isWelcomeUserVisible(user:String){
+    await expect(this.page.locator(`Welcome ${user}`)).toBeVisible();
   }
+
 	async clickCloseButton(){
 		await allure.step('Click close input', async () => {
       await this.closeButton.click();
@@ -55,11 +57,19 @@ export class LoginPage extends HeaderNavigationBar {
     });
   }
 
+  async verifyUserHasLoggedIn(user: string){
+    await allure.step('Verify user able to login', async()=>{
+      await expect(this.logoutButton).toBeVisible();
+      await this.isWelcomeUserVisible(user);
+    });
+  }
+
   async verifyLoginFormVisible() {
     await allure.step('Verify login form elements are visible', async () => {
       await expect(this.usernameInput).toBeVisible();
       await expect(this.passwordInput).toBeVisible();
       await expect(this.loginButton).toBeVisible();
+      await expect(this.closeButton).toBeVisible();
     });
   }
 

@@ -1,4 +1,4 @@
-import { Page, Locator, expect } from '@playwright/test';
+import { Page, Locator, expect, Browser } from '@playwright/test';
 import { HeaderNavigationBar } from '../components/header.page';
 const { allure } = require('allure-playwright');
 
@@ -8,8 +8,8 @@ export class SignUpPage extends HeaderNavigationBar {
   readonly signUpButton: Locator;
   readonly closeButton: Locator;
 
-  constructor(page: Page) {
-    super(page);
+  constructor(page: Page, browser: Browser) {
+    super(page, browser);
     this.usernameInput = page.getByRole('textbox', { name: 'Username:' });
     this.passwordInput = page.getByRole('textbox', { name: 'Password:' });
     this.signUpButton = page.getByRole('button', { name: 'Sign up' });
@@ -65,6 +65,7 @@ export class SignUpPage extends HeaderNavigationBar {
       await expect(this.usernameInput).toBeVisible();
       await expect(this.passwordInput).toBeVisible();
       await expect(this.signUpButton).toBeVisible();
+      await expect(this.closeButton).toBeVisible();
     });
   }
 }

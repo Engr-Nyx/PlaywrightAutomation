@@ -10,14 +10,14 @@ type fixtures = {
 };
 
 export const test = base.extend<fixtures>({
-  loginPage: async ({ page }, use) => {
-    await use(new LoginPage(page));
+  loginPage: async ({ page, browser }, use) => {
+    await use(new LoginPage(page, browser));
   },
-  signUpPage: async ({ page }, use) => {
-    await use(new SignUpPage(page));
+  signUpPage: async ({ page, browser }, use) => {
+    await use(new SignUpPage(page, browser));
   },
-  dashboardPage: async ({ page }, use) => {
-    await use(new DashboardPage(page));
+  dashboardPage: async ({ page, browser }, use) => {
+    await use(new DashboardPage(page, browser));
   },
 });
 

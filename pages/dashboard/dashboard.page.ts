@@ -1,12 +1,12 @@
-import { Page } from "@playwright/test";
+import { Browser, Page } from "@playwright/test";
 import { baseURL } from "../../utils/constants.utils";
 import {BasePage} from "../../pages/base/base.page";
 const {allure} = require('allure-playwright');
 
 export class DashboardPage extends BasePage {
 
-  constructor(page: Page) {
-    super(page);
+  constructor(page: Page, browser: Browser) {
+    super(page, browser);
   }
 
   async navigateToDashboard(): Promise<void> {

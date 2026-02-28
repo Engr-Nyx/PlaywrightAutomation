@@ -1,4 +1,4 @@
-import { Page, Locator, expect } from '@playwright/test';
+import { Page, Locator, expect, Browser } from '@playwright/test';
 import { DashboardPage } from '../dashboard/dashboard.page';
 const {allure} = require('allure-playwright');
 
@@ -13,8 +13,8 @@ export class HeaderNavigationBar extends DashboardPage {
   readonly headerLoginFormTitle: Locator;
   readonly headerSignUpFormTitle: Locator;
 
-  constructor(page: Page) {
-    super(page);
+  constructor(page: Page, browser: Browser) {
+    super(page, browser);
     this.headerLogo = page.getByRole('link', { name: 'PRODUCT STORE'});
     this.headerHomeButton = page.getByRole('link', { name: 'Home' });
     this.headerContactButton = page.getByRole('link', { name: 'Contact'});
