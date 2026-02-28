@@ -1,0 +1,1 @@
+Yes, the carousel image changes from right to left, and a new image is displayed.

@@ -1,3 +1,4 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","2126","TS_002 - Validate the Login functionality","Chromium","2026-02-28","passed","2026-02-28","Validate Authentication functionality","","",""
-"","2287","TS_001 - Validate the Sign-up functionality","Chromium","2026-02-28","passed","2026-02-28","Validate Authentication functionality","","",""
+"","25455","TS_003 - Validate dashboard functionality","Chromium","2026-02-28","passed","2026-02-28","Validate dashboard functionality","","",""
+"","2363","TS_002 - Validate the Login functionality","Chromium","2026-02-28","passed","2026-02-28","Validate Authentication functionality","","",""
+"","2284","TS_001 - Validate the Sign-up functionality","Chromium","2026-02-28","passed","2026-02-28","Validate Authentication functionality","","",""
