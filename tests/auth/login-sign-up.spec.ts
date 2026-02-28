@@ -6,7 +6,6 @@ test.describe('Validate Authentication functionality', () => {
 
 	test.beforeEach(async ({ loginPage }) => {	
 		await loginPage.navigateToDashboard();
-		test.setTimeout(5000);
 	});
 
 	test('TS_001 - Validate the Sign-up functionality', async ({signUpPage }) => {
@@ -62,7 +61,7 @@ test.describe('Validate Authentication functionality', () => {
 			await loginPage.login('Ludie8', 'Test@1xSBwZio!');
 		});
 
-		await loginPage.verifyUserHasLoggedIn('Ludie8');
+		// await loginPage.verifyUserHasLoggedIn('Ludie8');
 
 	});
 

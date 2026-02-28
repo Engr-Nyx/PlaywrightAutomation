@@ -59,8 +59,11 @@ export class LoginPage extends HeaderNavigationBar {
 
   async verifyUserHasLoggedIn(user: string){
     await allure.step('Verify user able to login', async()=>{
+      await this.logoutButton.waitFor({ state: 'visible', timeout: 10000 });
       await expect(this.logoutButton).toBeVisible();
       await this.isWelcomeUserVisible(user);
+      const screenshot = await this.page.screenshot({ fullPage: false });
+			await allure.attachment('Login page screenshot', screenshot, 'image/png');
     });
   }
 

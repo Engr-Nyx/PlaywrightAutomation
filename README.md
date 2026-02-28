@@ -1,14 +1,22 @@
 # Playwright Automation Powered by AI
 
 
+This repository contains Playwright automation tests enhanced with AI-based validation using Gemini AI.
+
+---
+
 ## Prerequisites
+
 Before setting up the project, ensure you have the following installed and configured:
 
-1. **Node.js & npm:** [Download and install Node.js](https://nodejs.org/) (LTS version recommended).
-2. **Java SDK:** Install JDK 11 or higher.
-3. **JAVA_HOME Environment Variable:** * Ensure your `JAVA_HOME` is pointing to your JDK installation folder.
-   * Add `%JAVA_HOME%\bin` (Windows) or `$JAVA_HOME/bin` (Mac/Linux) to your system **PATH**.
-   * *Required for running Allure reports.*
+1. **Node.js & npm**  
+   - Download and install Node.js (LTS version recommended) from [https://nodejs.org/](https://nodejs.org/).  
+
+2. **Java SDK**  
+   - Install JDK 11 or higher.  
+   - Set the `JAVA_HOME` environment variable to your JDK installation folder.  
+   - Add `%JAVA_HOME%\bin` (Windows) or `$JAVA_HOME/bin` (Mac/Linux) to your system **PATH**.  
+   - Required for running Allure reports.  
 
 ### Setup & Installation
 Initialize your local environment with the following:
@@ -22,7 +30,7 @@ To execute the automation suite:
 
 ### Reporting
 To view the execution results in Allure:
-* `npx allure serve 'allure-results'`
+* `npx allure serve allure-results`
 
 ---
 
