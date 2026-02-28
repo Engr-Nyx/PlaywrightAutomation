@@ -1,6 +1,6 @@
 import { Page } from '@playwright/test';
-import { OpenAi } from '../../utils/openai';
-import { attachAIResponse, takeScreenshot } from '../../utils/allure.helper';
+import { attachAIResponse, takeScreenshot } from '../../utils/helper.utils';
+import { OpenAi } from '../../utils/open-ai.utils';
 const { allure } = require('allure-playwright');
 const openai = new OpenAi();
 
@@ -14,6 +14,7 @@ export class BasePage {
 	async navigate(url: string) {
 		await allure.step('Navigate', async () => {
 			await this.page.goto(url);
+			this.waitForPageLoad();
 		});
 	}
 
@@ -24,7 +25,7 @@ export class BasePage {
 		});
 	}
 
-	async waitForPageLoad() {
+	private async waitForPageLoad() {
 		await allure.step('Wait for page to load', async () => {
 			await this.page.waitForLoadState('networkidle');
 		});

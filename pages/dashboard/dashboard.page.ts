@@ -1,15 +1,19 @@
-import { Page, Locator } from '@playwright/test';
-import { BasePage } from '../base/base.page';
+import { Page } from "@playwright/test";
+import { baseURL } from "../../utils/constants.utils";
+import {BasePage} from "../../pages/base/base.page";
+const {allure} = require('allure-playwright');
 
 export class DashboardPage extends BasePage {
-  readonly welcomeText: Locator;
 
   constructor(page: Page) {
     super(page);
-    this.welcomeText = page.locator('.welcome');
   }
 
-  async getWelcomeMessage() {
-    return this.welcomeText.textContent();
+  async navigateToDashboard(): Promise<void> {
+    this.navigate(baseURL);
+    await allure.step('Take screenshot after loading dashboard page', async () => {
+			const screenshot = await this.page.screenshot({ fullPage: false });
+			await allure.attachment('Dashboard page screenshot', screenshot, 'image/png');
+		});
   }
 }
