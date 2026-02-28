@@ -5,14 +5,14 @@ const { allure } = require('allure-playwright');
 export class SignUpPage extends HeaderNavigationBar {
   readonly usernameInput: Locator;
   readonly passwordInput: Locator;
-  readonly signUpSubmitButton: Locator;
+  readonly signUpButton: Locator;
   readonly closeButton: Locator;
 
   constructor(page: Page) {
     super(page);
     this.usernameInput = page.getByRole('textbox', { name: 'Username:' });
     this.passwordInput = page.getByRole('textbox', { name: 'Password:' });
-    this.signUpSubmitButton = page.getByRole('button', { name: 'Sign up' }); 
+    this.signUpButton = page.getByRole('button', { name: 'Sign up' });
     this.closeButton = page.getByLabel('Sign up').getByText('Close');
   }
 
@@ -31,19 +31,23 @@ export class SignUpPage extends HeaderNavigationBar {
 	async clickCloseButton(){
 		await allure.step('Click close input', async () => {
       await this.closeButton.click();
+      const screenshot = await this.page.screenshot({ fullPage: false });
+			await allure.attachment('Login page screenshot', screenshot, 'image/png');
     });
 	}
 
 	async clickSignUpButton(){
 		await allure.step('Click sign up input', async () => {
-      await this.signUpSubmitButton.click();
+      await this.signUpButton.click();
     });
 	}
 
   async signUp(username: string, password: string) {
     await allure.step('Perform sign', async () => {
       await this.fillSignUpForm(username, password);
-      await this.signUpSubmitButton.click();
+      await this.signUpButton.click();
+      const screenshot = await this.page.screenshot({ fullPage: false });
+			await allure.attachment('Login page screenshot', screenshot, 'image/png');
     });
   }
 
@@ -51,6 +55,8 @@ export class SignUpPage extends HeaderNavigationBar {
     await allure.step('Input sign up credentials', async () => {
       await this.usernameInput.fill(username);
       await this.passwordInput.fill(password);
+      const screenshot = await this.page.screenshot({ fullPage: false });
+			await allure.attachment('Login page screenshot', screenshot, 'image/png');
     });
   }
 
@@ -58,7 +64,7 @@ export class SignUpPage extends HeaderNavigationBar {
     await allure.step('Verify sign up form elements are visible', async () => {
       await expect(this.usernameInput).toBeVisible();
       await expect(this.passwordInput).toBeVisible();
-      await expect(this.signUpSubmitButton).toBeVisible();
+      await expect(this.signUpButton).toBeVisible();
     });
   }
 }

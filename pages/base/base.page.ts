@@ -14,7 +14,6 @@ export class BasePage {
 	async navigate(url: string) {
 		await allure.step('Navigate', async () => {
 			await this.page.goto(url);
-			this.waitForPageLoad();
 		});
 	}
 

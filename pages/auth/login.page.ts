@@ -28,9 +28,15 @@ export class LoginPage extends HeaderNavigationBar {
     });
 	}
 
+  async isCloseButtonVisible(){
+    if(await this.closeButton.isVisible()) return true;
+    else return false;
+  }
 	async clickCloseButton(){
 		await allure.step('Click close input', async () => {
       await this.closeButton.click();
+      const screenshot = await this.page.screenshot({ fullPage: false });
+			await allure.attachment('Login page screenshot', screenshot, 'image/png');
     });
 	}
 
@@ -44,6 +50,8 @@ export class LoginPage extends HeaderNavigationBar {
     await allure.step('Perform login', async () => {
       await this.fillLoginForm(username, password);
       await this.loginButton.click();
+      const screenshot = await this.page.screenshot({ fullPage: false });
+			await allure.attachment('Login page screenshot', screenshot, 'image/png');
     });
   }
 
@@ -59,6 +67,8 @@ export class LoginPage extends HeaderNavigationBar {
     await allure.step('Input login credentials', async () => {
       await this.usernameInput.fill(username);
       await this.passwordInput.fill(password);
+      const screenshot = await this.page.screenshot({ fullPage: false });
+			await allure.attachment('Login page screenshot', screenshot, 'image/png');
     });
   }
 }
