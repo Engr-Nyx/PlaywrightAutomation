@@ -19,7 +19,7 @@ export class GeminiAI {
       model: this.modelId,
       contents: [
         { inlineData: { mimeType: "image/jpeg", data: base64Data } },
-        { text: prompt }
+        { text: `Analyze the image base on this prompt: ${prompt}, the answer should start by yes or no` }
       ]
     });
 
@@ -51,7 +51,7 @@ export class GeminiAI {
             fileUri: file.uri
           }
         },
-        { text: prompt }
+        { text: `Anayze the video base on this prompt:${prompt}, the answer should start in yes or no` }
       ]
     });
 
