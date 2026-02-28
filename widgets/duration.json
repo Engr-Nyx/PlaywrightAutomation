@@ -1,1 +1,1 @@
-[{"uid":"d5725fb0dc23f62a","name":"User can login successfully","time":{"start":1772175358595,"stop":1772175365356,"duration":6761},"status":"passed","severity":"normal"}]
+[{"uid":"3e3c63c009ee94ec","name":"TS_002 - Validate the Login functionality","time":{"start":1772267197172,"stop":1772267199298,"duration":2126},"status":"passed","severity":"normal"},{"uid":"fdc1ea7747b3559a","name":"TS_001 - Validate the Sign-up functionality","time":{"start":1772267192979,"stop":1772267195266,"duration":2287},"status":"passed","severity":"normal"}]
