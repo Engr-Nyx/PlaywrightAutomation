@@ -1,7 +1,9 @@
 import { Browser, BrowserContext, Page, expect } from '@playwright/test';
 import { attachAIResponse, takeScreenshot } from '../../utils/helper.utils';
 import { GeminiAI } from '../../utils/gemini-ai.utils';
-import { readFileSync, existsSync } from 'fs';
+import { readFileSync, existsSync, unlinkSync } from 'fs';
+import path from 'path';
+import os from 'os'
 const { allure } = require('allure-playwright');
 const gemini = new GeminiAI();
 
@@ -30,40 +32,51 @@ export class BasePage {
 	}
 
 	async startRecording() {
+		const tempDir = path.join(os.tmpdir(), 'playwright-recordings');
+    
     this.recordingContext = await this.browser.newContext({
-      recordVideo: { dir: 'videos/' },
+      recordVideo: { dir: tempDir },
     });
-    this.recordingPage = await this.recordingContext.newPage();
-    await this.recordingPage.goto(this.page.url());
-    return this.recordingPage;
-  }
+		this.recordingPage = await this.recordingContext.newPage();
+		await this.recordingPage.goto(this.page.url());
+		return this.recordingPage;
+	}
 
-  async stopRecording() {
-    if (!this.recordingContext || !this.recordingPage) {
-      throw new Error('No recording in progress');
-    }
+	async stopRecording() {
+		if (!this.recordingContext || !this.recordingPage) {
+			throw new Error('No recording in progress');
+		}
 
-    const videoPath = await this.recordingPage.video()?.path();
-    await this.recordingContext.close();
-    this.recordingContext = null;
-    this.recordingPage = null;
+		const videoPath = await this.recordingPage.video()?.path();
+		await this.recordingContext.close();
+		this.recordingContext = null;
+		this.recordingPage = null;
 
-    if (!videoPath || !existsSync(videoPath)) {
-      throw new Error('Video file not found');
-    }
-    return videoPath;
-  }
+		if (!videoPath || !existsSync(videoPath)) {
+			throw new Error('Video file not found');
+		}
+		return videoPath;
+	}
 
-  async validateVideo(prompt: string) {
-    await allure.step('Video validation', async () => {
-      const videoPath = await this.stopRecording();
-      const videoBuffer = readFileSync(videoPath);
-      allure.attachment('Test Recording', videoBuffer, 'video/webm');
-      const response = await gemini.validateVideo(videoPath, prompt);
-			expect(response.toLowerCase()).toContain('yes');
-      attachAIResponse(response);
-    });
-  }
+	async validateVideo(prompt: string) {
+		await allure.step('Video validation', async () => {
+			const videoPath = await this.stopRecording();
+
+			try {
+				const videoBuffer = readFileSync(videoPath);
+				allure.attachment('Test Recording', videoBuffer, 'video/webm');
+				const response = await gemini.validateVideo(videoPath, prompt);
+
+				unlinkSync(videoPath);
+
+				expect(response.toLowerCase()).toContain('yes');
+				attachAIResponse(response);
+			} catch (error) {
+				if (existsSync(videoPath)) unlinkSync(videoPath);
+				throw error;
+			}
+		});
+	}
 
 	private async waitForPageLoad() {
 		await allure.step('Wait for page to load', async () => {
